@@ -21,7 +21,9 @@
                 <li><a href="Catalogus.aspx">Catalogus</a></li>
                 <li><a href="#">Winkelwagen</a></li>
                 </ul>
-               <span>Zoek</span> :<input type="search" name="zoek een product" />
+                <p style="margin-left: 80px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="search" id="veld_zoek" />
+                    <input id="knop_Zoek" type="button" value="Zoek" /></p>
             </div><!--end navigation-->
 
                 <div class="content">

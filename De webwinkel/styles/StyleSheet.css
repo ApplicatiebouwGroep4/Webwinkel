@@ -9,7 +9,7 @@
     width:1080px;
     margin:0 auto;
     padding:10px;
-    border:5px sloid #eee;
+    border:5px solid #eee;
     background-color:#eee;
 }
 
@@ -43,7 +43,7 @@
     position:relative;
     width:180px;
     height:50px;
-    pading:3px;
+    padding:3px;
 }
 
 #nav li a 
@@ -210,8 +210,9 @@
 {
     border: thin solid #dcdcdc;
     border-radius:5px;
-    height:500px;
+    height:400px;
     margin-top:2px;
+    text-align:center;
 }
 
 #catagorie_producten p
@@ -242,4 +243,20 @@
     background-color:#66cc33;
     text-align:center;
     color:#eee;
+}
+
+.productenlijst 
+{
+    border:1px solid gray;
+    height:150px;
+    width:150px;
+    text-align:center;
+}
+
+#listview_Catalogus 
+{
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: 500px;
 }

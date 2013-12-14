@@ -2,22 +2,21 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <div id="catagorie">
-    <p>Poeder catagorie</p>
+    <p>Informatie</p>
     &nbsp;</div><!--end catagorie-->
 
 <div id="catagorie_producten">
     <p><strong>Producten
         </strong></p>
-    <asp:ListView ID="listview_Catalogus" runat="server" DataSourceID="SqlDataSource1" DataKeyNames="productID" GroupItemCount="3">
+    <asp:ListView ID="listview_Catalogus" runat="server" DataSourceID="SqlDataSource1" DataKeyNames="productID" GroupItemCount="5">
         <AlternatingItemTemplate>
-            <td runat="server" style="">productID:
-                <asp:Label ID="productIDLabel" runat="server" Text='<%# Eval("productID") %>' />
-                <br />productnaam:
+            <td runat="server" style="" class="productenlijst">
+                <asp:Label ID="productIDLabel" runat="server" Text='<%# "#"+Eval("productID") %>' />
                 <asp:Label ID="productnaamLabel" runat="server" Text='<%# Eval("productnaam") %>' />
-                <br />productplaatje:
+                <br />
                 <asp:ImageButton ID="productplaatjeLabel" runat="server" ImgUrl='<%# Eval("productplaatje") %>' CommandArgument='<%# Eval("productID") %>'/>
-                <br />productprijs:
-                <asp:Label ID="productprijsLabel" runat="server" Text='<%# Eval("productprijs") %>' />
+                <br />
+                <asp:Label ID="productprijsLabel" runat="server" Text='<%# "€"+Eval("productprijs") %>' />
                 <br /></td>
         </AlternatingItemTemplate>
         <EditItemTemplate>
@@ -64,14 +63,13 @@
                 <br /></td>
         </InsertItemTemplate>
         <ItemTemplate>
-            <td runat="server" style="">productID:
-                <asp:Label ID="productIDLabel" runat="server" Text='<%# Eval("productID") %>' />
-                <br />productnaam:
+            <td runat="server" style="" class="productenlijst">
+                <asp:Label ID="productIDLabel" runat="server" Text='<%# "#"+Eval("productID") %>' />
                 <asp:Label ID="productnaamLabel" runat="server" Text='<%# Eval("productnaam") %>' />
-                <br />productplaatje:
+                <br />
                 <asp:ImageButton ID="productplaatjeLabel" runat="server" ImgUrl='<%# Eval("productplaatje") %>' CommandArgument='<%# Eval("productID") %>'/>
-                <br />productprijs:
-                <asp:Label ID="productprijsLabel" runat="server" Text='<%# Eval("productprijs") %>' />
+                <br />
+                <asp:Label ID="productprijsLabel" runat="server" Text='<%# "€"+Eval("productprijs") %>' />
                 <br /></td>
         </ItemTemplate>
         <LayoutTemplate>
@@ -86,7 +84,7 @@
                 </tr>
                 <tr runat="server">
                     <td runat="server" style="">
-                        <asp:DataPager ID="DataPager1" runat="server" PageSize="12">
+                        <asp:DataPager ID="DataPager1" runat="server" PageSize="10">
                             <Fields>
                                 <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
                                 <asp:NumericPagerField />
