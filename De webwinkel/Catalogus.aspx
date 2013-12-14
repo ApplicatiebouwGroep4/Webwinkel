@@ -1,8 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterWebwinkel.master" AutoEventWireup="true" CodeFile="Catalogus.aspx.cs" Inherits="Producten" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div id="catagorie">
-    <p>Informatie</p>
+    <div id="catagorie">
+    <p>
+        <asp:Label ID="lbl_informatie" runat="server" Text="Informatie"></asp:Label>
+        </p>
     &nbsp;</div><!--end catagorie-->
 
 <div id="catagorie_producten">
