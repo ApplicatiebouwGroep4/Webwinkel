@@ -195,26 +195,23 @@
 
 #catagorie
 {
-    border-style:solid;
-    border-color:#dcdcdc;
+    border: thin solid #dcdcdc;
     border-radius:5px;
-    border-width:thin;
-    height:auto;
+    height:100px;
 }
 
 #catagorie p
 {
     text-align:center;
+    height: 22px;
 }
 
 #catagorie_producten
 {
-    border-style:solid;
-    border-color:#dcdcdc;
+    border: thin solid #dcdcdc;
     border-radius:5px;
-    border-width:thin;
-    height:auto;
-    margin-top:20px;
+    height:500px;
+    margin-top:2px;
 }
 
 #catagorie_producten p
