@@ -22,8 +22,10 @@
                 <li><a href="#">Winkelwagen</a></li>
                 </ul>
                 <p style="margin-left: 80px">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="search" id="veld_zoek" />
-                    <input id="knop_Zoek" type="button" value="Zoek" /></p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="veld_Zoek" runat="server"></asp:TextBox>
+                    <asp:Button ID="knop_Zoek" runat="server" OnClick="knop_Zoek_Click" Text="Zoek" />
+                </p>
             </div><!--end navigation-->
 
                 <div class="content">
