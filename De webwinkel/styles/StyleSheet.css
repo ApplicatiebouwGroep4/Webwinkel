@@ -62,6 +62,7 @@
 #nav a:link, #nav a:active, #nav a:visited
 {
     display:block;
+    color:;
     text-decoration:none;
 }
 
@@ -258,4 +259,9 @@
     margin-right: auto;
     height: 200px;
     width: 500px;
+}
+
+h1
+{
+  font: 400 20px/1.4 'Cutive', helvetica, Verdana, Arial, sans-serif;  
 }
