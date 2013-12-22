@@ -16,4 +16,5 @@ public partial class MasterWebwinkel : System.Web.UI.MasterPage
         string url = string.Format("~/Catalogus.aspx?search={0}", veld_Zoek.Text);
         Response.Redirect(url);
     }
+    
 }

@@ -1,8 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterWebwinkel.master" AutoEventWireup="true" CodeFile="Catalogus.aspx.cs" Inherits="Producten" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div id="catagorie">
-    <p>Informatie</p>
+    <div id="catagorie">
+    <p>
+        <asp:Label ID="lbl_informatie" runat="server" Text="Informatie"></asp:Label>
+        </p>
     &nbsp;</div><!--end catagorie-->
 
 <div id="catagorie_producten">
@@ -14,7 +16,7 @@
                 <asp:Label ID="productIDLabel" runat="server" Text='<%# "#"+Eval("productID") %>' />
                 <asp:Label ID="productnaamLabel" runat="server" Text='<%# Eval("productnaam") %>' />
                 <br />
-                <asp:ImageButton ID="productplaatjeLabel" runat="server" ImgUrl='<%# Eval("productplaatje") %>' CommandArgument='<%# Eval("productID") %>'/>
+                <asp:ImageButton ID="productplaatjeLabel" runat="server" ImageUrl='<%# Eval("productplaatje") %>' OnClick="productplaatjeLabel_Click" CommandArgument='<%# Eval("productID") %>'/>
                 <br />
                 <asp:Label ID="productprijsLabel" runat="server" Text='<%# "€"+Eval("productprijs") %>' />
                 <br /></td>
@@ -67,7 +69,7 @@
                 <asp:Label ID="productIDLabel" runat="server" Text='<%# "#"+Eval("productID") %>' />
                 <asp:Label ID="productnaamLabel" runat="server" Text='<%# Eval("productnaam") %>' />
                 <br />
-                <asp:ImageButton ID="productplaatjeLabel" runat="server" ImgUrl='<%# Eval("productplaatje") %>' CommandArgument='<%# Eval("productID") %>'/>
+                <asp:ImageButton ID="productplaatjeLabel" runat="server" ImageUrl='<%# Eval("productplaatje") %>' OnClick="productplaatjeLabel_Click" CommandArgument='<%# Eval("productID") %>'/>
                 <br />
                 <asp:Label ID="productprijsLabel" runat="server" Text='<%# "€"+Eval("productprijs") %>' />
                 <br /></td>
@@ -107,7 +109,7 @@
                 <br /></td>
         </SelectedItemTemplate>
         </asp:ListView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [productID], [productnaam], [productplaatje], [productprijs] FROM [PRODUCT]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" ProviderName="<%$ ConnectionStrings:ConnectionString2.ProviderName %>" SelectCommand="SELECT [productID], [productnaam], [productplaatje], [productprijs] FROM [PRODUCT]"></asp:SqlDataSource>
     &nbsp;&nbsp;
 </div><!--end catagorie_producten-->
 </asp:Content>

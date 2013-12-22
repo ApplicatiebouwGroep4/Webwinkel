@@ -14,7 +14,7 @@ public partial class Product : System.Web.UI.Page
     {
         //string stringquery = Request.QueryString["productID"];
         string stringquery = "1";
-        string ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString3"].ConnectionString;
+        string ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString2"].ConnectionString;
 
         OleDbCommand cmd = new OleDbCommand();
         cmd.CommandText = @"SELECT [productID], [productnaam], [productomschrijving], [productcategorie], [productprijs], [productplaatje] FROM [PRODUCT] WHERE [productID] = @productID;";
@@ -44,7 +44,7 @@ public partial class Product : System.Web.UI.Page
         string productnaam = dr.GetString(1);
         string productomschrijving = dr.GetString(2);
         string productcategorie = dr.GetString(3);
-        double productprijs = dr.GetInt32(4);
+        decimal productprijs = dr.GetDecimal(4);
         string productplaatje = dr.GetString(5);
 
         databaseConnectie.Dispose();

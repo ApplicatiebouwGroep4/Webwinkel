@@ -38,10 +38,11 @@
                     
                     <div class="sidebar">
                         <ul id="categorieen">
-                            <li><a>Poeder</a></li>
-                    	    <li><a>Tabletten</a></li>
-                    	    <li><a>Kruiden</a></li>
-                    	    <li><a>Algen</a></li>
+                            <li><a href="catalogus.aspx?categorie=algen">Algen</a></li>
+                            <li><a href="catalogus.aspx?categorie=poeder">Poeder</a></li>
+                    	    <li><a href="catalogus.aspx?categorie=tabletten">Tabletten</a></li>
+                            <li><a href="catalogus.aspx?categorie=overigen">Overigen</a></li>
+                    	    
                         </ul>
                     </div><!--end sidebar-->
 
