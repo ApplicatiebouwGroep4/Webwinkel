@@ -1,16 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterWebwinkel.master" AutoEventWireup="true" CodeFile="Product.aspx.cs" Inherits="Product" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div id="ProductDetails">
-    <p id="product_p">Product details: Naam, beoordeling, verlanglijst, mail naar vriend etc.</p>
-    <img src="Image/chaga.jpg" alt="product plaatje" />
-    <p>Prijs</p>
-    <p>Hoeveelheid in voorad</p>
-    <p>+Plaats in winklmand</p>
+    <div id="ProductDetails">
+    <p id="product_p">
+        #<asp:Label ID="lbl_titel" runat="server"></asp:Label>
+        </p>
+    &nbsp;<asp:Image ID="img_productplaatje" runat="server" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+    <p>&nbsp;
+        €<asp:Label ID="lbl_prijs" runat="server"></asp:Label>
+&nbsp;</p>
+    <p>Categorie:
+        <asp:Label ID="lbl_categorie" runat="server"></asp:Label>
+        </p>
+    <p>+Plaats in winkelmand</p>
 </div><!--end ProductDetails-->
 
 <div id="ProductenContent">
-    <p>Content informatie</p>
+    <p>
+        <asp:Label ID="lbl_omschrijving" runat="server"></asp:Label>
+    </p>
 </div><!--end ProductenContent-->
 
 <div id="slider2">
