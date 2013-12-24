@@ -18,9 +18,9 @@ public partial class Producten : System.Web.UI.Page
         if(Request.QueryString["search"] != null)
         {
             //leest de querystring en stuurt de gemaakte sqlquery naar de SqlDataSource van de listview.
-            zoekgegeven = Request.QueryString["search"];
+            zoekgegeven = SQL_Injection_Security(Request.QueryString["search"]);
+
             SqlDataSource1.SelectCommand = "SELECT [productID], [productnaam], [productplaatje], [productprijs] FROM [PRODUCT] WHERE [productomschrijving] LIKE \"%" + zoekgegeven + "%\";";
-            listview_Catalogus.DataBind();
             
             lbl_informatie.Text = "U heeft gezocht op: \"" + zoekgegeven + "\"";
         }
@@ -31,9 +31,9 @@ public partial class Producten : System.Web.UI.Page
             if(Request.QueryString["categorie"] != null)
             {
                 //leest de querystring en stuurt de gemaakte sqlquery naar de SqlDataSource van de listview.
-                zoekgegeven = Request.QueryString["categorie"];
+                zoekgegeven = SQL_Injection_Security(Request.QueryString["categorie"]);
+
                 SqlDataSource1.SelectCommand = "SELECT [productID], [productnaam], [productplaatje], [productprijs] FROM [PRODUCT] WHERE [productcategorie] = \"" + zoekgegeven + "\";";
-                listview_Catalogus.DataBind();
                 
                 lbl_informatie.Text = zoekgegeven + ", hier moet nog tekst en een plaatje komen gebaseerd op de categorie! (kunnen we uit de database wel halen denk ik)";
             }
@@ -43,6 +43,33 @@ public partial class Producten : System.Web.UI.Page
                 lbl_informatie.Text = "Lorem ipsum bla bla bla, hier komt algemeen tekst te staan.";
             }
         }
+    }
+
+    protected string SQL_Injection_Security(string zoekgegeven)
+    {
+        string zoekgegeven_secure = "";
+
+        for (int i = 0; i < zoekgegeven.Length; i++)
+        {
+            if (zoekgegeven[i] != '\"')
+            {
+                zoekgegeven_secure += zoekgegeven[i];
+            }
+            else
+            {
+                i = zoekgegeven.Length;
+            }
+        }
+
+        return (zoekgegeven_secure);
+    }
+
+    protected void productlink_Click(object sender, EventArgs e)
+    {
+        string productID = ((LinkButton)sender).CommandArgument;
+        string url = string.Format("~/Product.aspx?productID={0}", productID);
+
+        Response.Redirect(url);
     }
 
     protected void productplaatjeLabel_Click(object sender, ImageClickEventArgs e)

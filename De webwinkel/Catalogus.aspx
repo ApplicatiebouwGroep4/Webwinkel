@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterWebwinkel.master" AutoEventWireup="true" CodeFile="Catalogus.aspx.cs" Inherits="Producten" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterWebwinkel.master" AutoEventWireup="true" CodeFile="Catalogus.aspx.cs" Inherits="Producten" EnableEventValidation="true"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="catagorie">
@@ -13,12 +13,12 @@
     <asp:ListView ID="listview_Catalogus" runat="server" DataSourceID="SqlDataSource1" DataKeyNames="productID" GroupItemCount="5">
         <AlternatingItemTemplate>
             <td runat="server" style="" class="productenlijst">
-                <asp:Label ID="productIDLabel" runat="server" Text='<%# "#"+Eval("productID") %>' />
-                <asp:Label ID="productnaamLabel" runat="server" Text='<%# Eval("productnaam") %>' />
+                <asp:LinkButton ID="productIDLabel" runat="server" ForeColor="black" Font-Underline="false" Text='<%# "#"+Eval("productID") %>' OnClick="productlink_Click" CommandArgument='<%# Eval("productID") %>'/>
+                <asp:LinkButton ID="productnaamLabel" runat="server" ForeColor="black" Font-Underline="false" Text='<%# Eval("productnaam") %>' OnClick="productlink_Click" CommandArgument='<%# Eval("productID") %>'/>
                 <br />
-                <asp:ImageButton ID="productplaatjeLabel" runat="server" ImageUrl='<%# Eval("productplaatje") %>' OnClick="productplaatjeLabel_Click" CommandArgument='<%# Eval("productID") %>'/>
+                <asp:ImageButton ID="productplaatjeLabel" runat="server" ImageUrl='<%# Eval("productplaatje") %>' Height="100px" Width="120px" OnClick="productplaatjeLabel_Click" CommandArgument='<%# Eval("productID") %>'/>
                 <br />
-                <asp:Label ID="productprijsLabel" runat="server" Text='<%# "€"+Eval("productprijs") %>' />
+                <asp:Label ID="productprijsLabel" runat="server" ForeColor="red" Font-Bold="true" Text='<%# "€"+Eval("productprijs") %>' />
                 <br /></td>
         </AlternatingItemTemplate>
         <EditItemTemplate>
@@ -66,12 +66,12 @@
         </InsertItemTemplate>
         <ItemTemplate>
             <td runat="server" style="" class="productenlijst">
-                <asp:Label ID="productIDLabel" runat="server" Text='<%# "#"+Eval("productID") %>' />
-                <asp:Label ID="productnaamLabel" runat="server" Text='<%# Eval("productnaam") %>' />
+                <asp:LinkButton ID="productIDLabel" runat="server" ForeColor="black" Font-Underline="false" Text='<%# "#"+Eval("productID") %>' OnClick="productlink_Click" CommandArgument='<%# Eval("productID") %>'/>
+                <asp:LinkButton ID="productnaamLabel" runat="server" ForeColor="black" Font-Underline="false" Text='<%# Eval("productnaam") %>' OnClick="productlink_Click" CommandArgument='<%# Eval("productID") %>'/>
                 <br />
-                <asp:ImageButton ID="productplaatjeLabel" runat="server" ImageUrl='<%# Eval("productplaatje") %>' OnClick="productplaatjeLabel_Click" CommandArgument='<%# Eval("productID") %>'/>
+                <asp:ImageButton ID="productplaatjeLabel" runat="server" ImageUrl='<%# Eval("productplaatje") %>' Height="100px" Width="120px" OnClick="productplaatjeLabel_Click" CommandArgument='<%# Eval("productID") %>'/>
                 <br />
-                <asp:Label ID="productprijsLabel" runat="server" Text='<%# "€"+Eval("productprijs") %>' />
+                <asp:Label ID="productprijsLabel" runat="server" ForeColor="red" Font-Bold="true" Text='<%# "€"+Eval("productprijs") %>' />
                 <br /></td>
         </ItemTemplate>
         <LayoutTemplate>

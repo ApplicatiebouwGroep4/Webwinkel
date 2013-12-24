@@ -62,7 +62,6 @@
 #nav a:link, #nav a:active, #nav a:visited
 {
     display:block;
-    color:;
     text-decoration:none;
 }
 
@@ -154,13 +153,7 @@
     border-color:#dcdcdc;
     border-radius:5px;
     border-width:thin;
-    height:auto;
-}
-
-
-#product_p
-{
-    text-align:center;
+    height:250px;
 }
 
 #ProductenContent
@@ -171,12 +164,9 @@
     border-width:thin;
     height:auto;
     margin-top:20px;
-}
-
-#ProductenContent
-{
     text-align:center;
 }
+
 
 #slider2
 {
@@ -186,10 +176,6 @@
     border-radius:5px;
     height:auto;
     margin-top:20px;
-}
-
-#slider2
-{
     text-align:center;
 }
 
@@ -263,5 +249,43 @@
 
 h1
 {
-  font: 400 20px/1.4 'Cutive', helvetica, Verdana, Arial, sans-serif;  
+    font: 400 20px/1.4 'Cutive', helvetica, Verdana, Arial, sans-serif;  
+}
+
+#productplaatje 
+{
+    float: left;
+}
+
+#product_info 
+{
+    float: left;
+    width: 350px;
+    height: 200px;
+    text-align: center;
+}
+
+#product_winkelwagen 
+{
+    float: left;
+    height: 200px;
+    width: 180px;
+}
+
+#Product_Omschrijving
+{
+    border-style:solid;
+    border-color:#dcdcdc;
+    border-width:thin;
+    border-radius:5px;
+    height:auto;
+    margin-top:20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#euroteken 
+{
+    color: red;
+    font-size: x-large;
 }
