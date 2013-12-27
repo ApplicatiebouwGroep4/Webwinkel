@@ -23,7 +23,9 @@
 #nav 
 {
     list-style:none;
-    width:100%;
+    width:560px;
+    float: left;
+
 }
 
 #nav ul
@@ -288,4 +290,30 @@ h1
 {
     color: red;
     font-size: x-large;
+}
+
+#zoekbalk 
+{
+    width: 210px;
+    float: left;
+    margin-left: 20px;
+}
+
+#klant 
+{
+    width: 205px;
+    height: 80px;
+    background-color: #339933;
+    border-radius: 8px;
+    float: left;
+    margin-top: 14px;
+    margin-left: 20px;
+    text-align: center;
+}
+
+#inlogpage 
+{
+    text-align: center;
+    width: auto;
+    height: auto;
 }

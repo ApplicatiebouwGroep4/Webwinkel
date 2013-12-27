@@ -4,42 +4,41 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
 using System.Data.OleDb;
+using System.Data;
 using System.Configuration;
 
-public partial class MasterWebwinkel : System.Web.UI.MasterPage
+public partial class Inloggen : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["klantID"] != null)
         {
-            lbl_emailadres.Text = "Welkom, " + Session["naam"] + "!";
-            
-            lbl_wachtwoord.Visible = false;
-            veld_emailadres.Visible = false;
-            veld_wachtwoord.Visible = false;
-            knop_inloggen.Visible = false;
-            knop_registreren.Visible = false;
-            knop_uitloggen.Visible = true;
+            Response.Redirect("~/index.aspx");
         }
-    }
-    protected void knop_Zoek_Click(object sender, EventArgs e)
-    {
-        string url = string.Format("~/Catalogus.aspx?search={0}", veld_Zoek.Text);
-        Response.Redirect(url);
+
+        if (Request.QueryString["login"] == "failed")
+        {
+            lbl_warning.Visible = true;
+        }
+
+        if (Request.QueryString["login"] == "connection_failed")
+        {
+            lbl_warning.Text = "Er kan geen verbinding gemaakt worden met de database. Probeer het later opnieuw.";
+            lbl_warning.Visible = true;
+        }
     }
 
     protected void knop_inloggen_Click(object sender, EventArgs e)
     {
         if (veld_emailadres.Text == "" || veld_wachtwoord.Text == "")
         {
-            Response.Redirect("~/Inloggen.aspx");
+            Response.Redirect("~/Inloggen.aspx?login=failed");
         }
-        
+
         string achternaam, ConnectionString, emailadres, voornaam, wachtwoord_Ingevoerd, wachtwoord_Database;
         int klantID;
-        
+
         ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString2"].ConnectionString;
         emailadres = SQL_Injection_Security(veld_emailadres.Text);
         wachtwoord_Ingevoerd = veld_wachtwoord.Text;
@@ -86,10 +85,6 @@ public partial class MasterWebwinkel : System.Web.UI.MasterPage
             Response.Redirect("~/Inloggen.aspx?login=failed");
         }
     }
-    protected void knop_registreren_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/Registreren.aspx");
-    }
 
     protected string SQL_Injection_Security(string emailadres)
     {
@@ -109,10 +104,8 @@ public partial class MasterWebwinkel : System.Web.UI.MasterPage
 
         return (emailadres_secure);
     }
-
-    protected void knop_uitloggen_Click(object sender, EventArgs e)
+    protected void knop_registreren_Click(object sender, EventArgs e)
     {
-        Session.Abandon();
-        Response.Redirect(Request.RawUrl);
+        Response.Redirect("~/Registreren.aspx");
     }
 }

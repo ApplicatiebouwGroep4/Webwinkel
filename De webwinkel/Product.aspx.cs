@@ -22,7 +22,7 @@ public partial class Product : System.Web.UI.Page
         string ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString2"].ConnectionString;
 
         OleDbCommand cmd = new OleDbCommand();
-        cmd.CommandText = @"SELECT [productID], [productnaam], [productomschrijving], [productcategorie], [productprijs], [productplaatje], [voorraad] FROM [PRODUCT] WHERE [productID] = @productID;";
+        cmd.CommandText = @"SELECT [productnaam], [productomschrijving], [productcategorie], [productprijs], [productplaatje], [voorraad] FROM [PRODUCT] WHERE [productID] = @productID;";
         cmd.CommandType = CommandType.Text;
         cmd.Parameters.AddWithValue("productID", stringquery);
 
@@ -45,12 +45,12 @@ public partial class Product : System.Web.UI.Page
             return;
         }
 
-        string productnaam = dr.GetString(1);
-        string productomschrijving = dr.GetString(2);
-        string productcategorie = dr.GetString(3);
-        decimal productprijs = dr.GetDecimal(4);
-        string productplaatje = dr.GetString(5);
-        int voorraad = dr.GetInt32(6);
+        string productnaam = dr.GetString(0);
+        string productomschrijving = dr.GetString(1);
+        string productcategorie = dr.GetString(2);
+        decimal productprijs = dr.GetDecimal(3);
+        string productplaatje = dr.GetString(4);
+        int voorraad = dr.GetInt32(5);
 
         databaseConnectie.Dispose();
         databaseConnectie.Close();

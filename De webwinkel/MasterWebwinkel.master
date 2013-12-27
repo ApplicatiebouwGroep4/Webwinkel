@@ -21,11 +21,23 @@
                 <li><a href="Catalogus.aspx">Catalogus</a></li>
                 <li><a href="#">Winkelwagen</a></li>
                 </ul>
-                <p style="margin-left: 80px">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <p id="zoekbalk">
                     <asp:TextBox ID="veld_Zoek" runat="server"></asp:TextBox>
                     <asp:Button ID="knop_Zoek" runat="server" OnClick="knop_Zoek_Click" Text="Zoek" />
                 </p>
+                <div id="klant">
+                    <asp:Label ID="lbl_emailadres" runat="server" Text="emailadres:" ForeColor="#EEEEEE"></asp:Label>
+                    &nbsp;<asp:TextBox ID="veld_emailadres" runat="server" Width="102px" style="margin-left: 3px" TextMode="Email"></asp:TextBox>
+
+                    <br />
+                    <asp:Label ID="lbl_wachtwoord" runat="server" Text="wachtwoord:  " ForeColor="#EEEEEE"></asp:Label>
+                    <asp:TextBox ID="veld_wachtwoord" runat="server" Width="100px" TextMode="Password"></asp:TextBox>
+                    <asp:LinkButton ID="knop_inloggen" runat="server" OnClick="knop_inloggen_Click" Text="inloggen" ForeColor="#EEEEEE"></asp:LinkButton>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:LinkButton ID="knop_registreren" runat="server" OnClick="knop_registreren_Click" Text="registreren" ForeColor="#EEEEEE"></asp:LinkButton>
+                    <br /><asp:LinkButton ID="knop_uitloggen" runat="server" ForeColor="#EEEEEE" OnClick="knop_uitloggen_Click" Visible="False">Uitloggen</asp:LinkButton>
+                </div>
+
             </div><!--end navigation-->
 
                 <div class="content">
