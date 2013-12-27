@@ -47,8 +47,12 @@ public partial class Producten : System.Web.UI.Page
 
     protected string SQL_Injection_Security(string zoekgegeven)
     {
+        //Declareer een lege variabel.
         string zoekgegeven_secure = "";
-
+       
+        //Alle tekens in het zoekgegeven worden gecontroleerd en toegevoegd aan de variabel "zoekgegeven_secure. 
+        //Wanneer er een " gevonden wordt stopt hij direct en returned hij de variabel "zoekgegeven_secure".
+        //Hiermee worden SQL Injections voorkomen.
         for (int i = 0; i < zoekgegeven.Length; i++)
         {
             if (zoekgegeven[i] != '\"')
@@ -60,12 +64,12 @@ public partial class Producten : System.Web.UI.Page
                 i = zoekgegeven.Length;
             }
         }
-
         return (zoekgegeven_secure);
     }
 
     protected void productlink_Click(object sender, EventArgs e)
     {
+        //Leest de productID uit de meegegeven CommandArgument en stuurt de gebruiker naar de bij behorende productpagina.
         string productID = ((LinkButton)sender).CommandArgument;
         string url = string.Format("~/Product.aspx?productID={0}", productID);
 
@@ -74,6 +78,7 @@ public partial class Producten : System.Web.UI.Page
 
     protected void productplaatjeLabel_Click(object sender, ImageClickEventArgs e)
     {
+        //Leest de productID uit de meegegeven CommandArgument en stuurt de gebruiker naar de bij behorende productpagina.
         string productID = ((ImageButton)sender).CommandArgument;
         string url = string.Format("~/Product.aspx?productID={0}", productID);
 

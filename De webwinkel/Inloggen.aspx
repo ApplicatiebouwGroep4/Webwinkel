@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="inlogpage">
         <h1>Inloggen</h1>
-        <asp:Label ID="lbl_warning" runat="server" ForeColor="Red" Text="Het opgegeven emailadres en/of wachtwoord klopt niet." Visible="False"></asp:Label>
+        <asp:Label ID="lbl_warning" runat="server" ForeColor="Red" Text="[waarschuwing]" Visible="False"></asp:Label>
         <br />
         <asp:Label ID="lbl_emailadres" runat="server" Text="Emailadres:"></asp:Label>
 &nbsp;&nbsp;&nbsp;

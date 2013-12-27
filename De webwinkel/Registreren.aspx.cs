@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data.OleDb;
 using System.Data;
 using System.Configuration;
+using System.Security.Cryptography;
+using System.Text;
 
 public partial class Registreren : System.Web.UI.Page
 {
@@ -30,7 +32,7 @@ public partial class Registreren : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@voornaam",voornaamTextBox.Text);
         cmd.Parameters.AddWithValue("@achternaam", achternaamTextBox.Text);
         cmd.Parameters.AddWithValue("@email", emailTextBox.Text);
-        cmd.Parameters.AddWithValue("@wachtwoord",wachtwoordTextBox.Text);
+        cmd.Parameters.AddWithValue("@wachtwoord",encrypt_wachtwoord(wachtwoordTextBox.Text));
         cmd.Parameters.AddWithValue("@adres", adresTextBox.Text);
         cmd.Parameters.AddWithValue("@postcode", postcodeTextBox.Text);
         cmd.Parameters.AddWithValue("@plaats", plaatsTextBox.Text);
@@ -77,5 +79,19 @@ public partial class Registreren : System.Web.UI.Page
         cmd.Transaction.Commit();
         MyAccessConn.Dispose();
         MyAccessConn.Close();
+    }
+
+    protected string encrypt_wachtwoord(string wachtwoord)
+    {
+        //Alle tekens in het wachtwoord worden omgezet in bytes en dan weer in een array gezet genaamd teken_bytes[].
+        byte[] teken_bytes = Encoding.Unicode.GetBytes(wachtwoord);
+
+        //De tekens in de teken_bytes worden één voor één door een hash formule gehaald en geplaatst in de array genaamd encrypted_tekens
+        byte[] encrypted_tekens = HashAlgorithm.Create("SHA1").ComputeHash(teken_bytes);
+
+        //De tekens in de array genaamd encrypted_tekens worden samengevoegd in één string.
+        string encrypted_wachtwoord = Convert.ToBase64String(encrypted_tekens);
+
+        return (encrypted_wachtwoord);
     }
 }
