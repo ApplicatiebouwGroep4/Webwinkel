@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterWebwinkel.master" AutoEventWireup="true" CodeFile="Registreren.aspx.cs" Inherits="Registreren" %>
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h1>Accountgegevens</h1>
     <table style="width: 100%; height: 100%;">
@@ -30,14 +32,18 @@
                 <asp:Label ID="emailLabel1" runat="server" Text="E-mail:"></asp:Label>
             </td>
             <td style="color: #66cc66">
-                <asp:TextBox ID="emailTextBox" runat="server" TextMode="Email" Width="140px" ValidationGroup="validation_registratie"></asp:TextBox>
+                <asp:TextBox ID="emailTextBox" runat="server" Width="140px" ValidationGroup="validation_registratie" TextMode="Phone"></asp:TextBox>
                 *<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                     ControlToValidate="emailTextBox" ErrorMessage="Geef een valid e-mail" 
                     ForeColor="#339933" ValidationGroup="validation_registratie"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
-                    ControlToValidate="emailTextBox" ErrorMessage="Geef een valid e-mail adres" 
-                    ForeColor="#339933" 
-                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Geef een valid E-mail adres" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="emailTextBox"></asp:RegularExpressionValidator>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 215px">
+                &nbsp;</td>
+            <td style="color: #66cc66">
+                <asp:Label ID="Check_EmailLabel" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -46,10 +52,17 @@
             </td>
             <td style="color: #66cc66">
                 <asp:TextBox ID="wachtwoordTextBox" runat="server" TextMode="Password" 
-                    Width="140px" ValidationGroup="validation_registratie"></asp:TextBox>
+                    Width="140px"></asp:TextBox>
                 *<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
                     ControlToValidate="wachtwoordTextBox" ErrorMessage="Geef een wachtwoord" 
-                    ForeColor="#339933" ValidationGroup="validation_registratie"></asp:RequiredFieldValidator>
+                    ForeColor="#339933" ValidationGroup="validation_registratie" ></asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 215px">
+                &nbsp;</td>
+            <td style="color: #66cc66">
+                <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Wachtwoord mag niet meer dan 6" OnServerValidate="CustomValidator1_ServerValidate" ControlToValidate="wachtwoordTextBox" Display="Dynamic"></asp:CustomValidator>
             </td>
         </tr>
         <tr>
@@ -64,9 +77,6 @@
                     ControlToCompare="wachtwoordTextBox" 
                     ControlToValidate="wchtwoordbevstigTextBox" ErrorMessage="Wachtwoord onjuist" 
                     ForeColor="#339933" ValidationGroup="validation_registratie"></asp:CompareValidator>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
-                    ControlToValidate="wchtwoordbevstigTextBox" 
-                    ErrorMessage="Bevestig uw wachtwoord" ForeColor="#339933" ValidationGroup="validation_registratie"></asp:RequiredFieldValidator>
 &nbsp;</td>
         </tr>
         <tr>
@@ -107,7 +117,7 @@
                 <asp:Label ID="TelefoonnummerLabel" runat="server" Text="Telefoonnummer:"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="telefoonnummerTextBox" runat="server" TextMode="Phone" 
+                <asp:TextBox ID="telefoonnummerTextBox" runat="server" 
                     Width="140px" ValidationGroup="validation_registratie"></asp:TextBox>
             </td>
         </tr>

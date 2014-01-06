@@ -317,3 +317,27 @@ h1
     width: auto;
     height: auto;
 }
+
+.BarIndicator
+{
+    color:blue;
+    background-color:blue;
+    padding:1px;
+}
+
+.BarInClass
+{
+    border-style:solid;
+    border-width:1px;
+    width:200px;
+    vertical-align:central;
+
+}
+
+.PassText
+{
+    font-size:small;
+    color:#000;
+    font-family:Arial;
+    padding:2px 3px 2px 3px;
+}

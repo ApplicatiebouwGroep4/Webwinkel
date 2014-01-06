@@ -22,23 +22,20 @@ public partial class Registreren : System.Web.UI.Page
 
     protected void verzendenButton_Click(object sender, EventArgs e)
     {
-        DateTime time = DateTime.Now;
-        string datum = time.ToString("dd-M-yyyy");
         
         string ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString2"].ConnectionString;
         OleDbCommand cmd = new OleDbCommand();
         cmd.CommandText = @"INSERT INTO KLANT (voornaam, achternaam, adres, postcode, plaats, telefoonnummer, nieuwsbrief, email, wachtwoord, registratiedatum) VALUES (@voornaam, @achternaam, @adres, @postcode, @plaats, @telefoonnummer, @nieuwsbrief, @email, @wachtwoord, @registratiedatum)";
-        cmd.CommandType = CommandType.Text;
-        cmd.Parameters.AddWithValue("@voornaam",voornaamTextBox.Text);
+        cmd.Parameters.AddWithValue("@voornaam", voornaamTextBox.Text);
         cmd.Parameters.AddWithValue("@achternaam", achternaamTextBox.Text);
-        cmd.Parameters.AddWithValue("@email", emailTextBox.Text);
-        cmd.Parameters.AddWithValue("@wachtwoord",encrypt_wachtwoord(wachtwoordTextBox.Text));
         cmd.Parameters.AddWithValue("@adres", adresTextBox.Text);
         cmd.Parameters.AddWithValue("@postcode", postcodeTextBox.Text);
         cmd.Parameters.AddWithValue("@plaats", plaatsTextBox.Text);
         cmd.Parameters.AddWithValue("@telefoonnummer", telefoonnummerTextBox.Text);
         cmd.Parameters.AddWithValue("@nieuwsbrief", niuwesbriefCheckBox.Checked);
-        cmd.Parameters.AddWithValue("@registratiedatum", datum);
+        cmd.Parameters.AddWithValue("@email", emailTextBox.Text);
+        cmd.Parameters.AddWithValue("@wachtwoord", wachtwoordTextBox.Text);
+        cmd.Parameters.AddWithValue("@registratiedatum", DateTime.Now); 
 
         OleDbConnection MyAccessConn = null;
 
@@ -79,6 +76,44 @@ public partial class Registreren : System.Web.UI.Page
         cmd.Transaction.Commit();
         MyAccessConn.Dispose();
         MyAccessConn.Close();
+
+        OleDbCommand chk = new OleDbCommand();
+        chk.CommandType = CommandType.Text;
+        chk.CommandText = @"SELECT [email] from KLANT WHERE [email]=@email";
+        chk.Parameters.AddWithValue("@email", emailTextBox.Text);
+        OleDbConnection check_email = null;
+        try
+        {
+            check_email = new OleDbConnection(ConnectionString);
+        }
+        catch
+        {
+            Response.Redirect("~/Registreren.aspx");
+        }
+
+        //maak connectie met databse...
+        chk.Connection = check_email;
+        check_email.Open();
+
+        OleDbDataReader dr = chk.ExecuteReader();
+        
+        // check of de email in de database is al bestaan...
+        //check of de email niet in de database is bestaan...
+        if (dr.Read())
+        {
+            Check_EmailLabel.Text = "Deze E-mail is in gebruik";
+        }
+        else
+        {
+            //wordt opgeslagen....
+        }
+
+        //haal de gegevens die database verstuurd...
+        string email = dr.GetString(0);
+
+        //sluit de verbinding met de database...
+        check_email.Dispose();
+        check_email.Close();
     }
 
     protected string encrypt_wachtwoord(string wachtwoord)
@@ -93,5 +128,20 @@ public partial class Registreren : System.Web.UI.Page
         string encrypted_wachtwoord = Convert.ToBase64String(encrypted_tekens);
 
         return (encrypted_wachtwoord);
+    }
+    protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        // als het wachtwoord minder of gelijk aan 6....
+        if (args.Value.Length <= 6)
+        {
+            // het wachtwoord is valid, dan wordt het opgeslagen in de database...
+            args.IsValid = true;
+        }
+
+        else
+        {
+            //het wachtwoord meer dan 6 dan wordt een Error bericht getoond...
+            args.IsValid = false;
+        }
     }
 }
